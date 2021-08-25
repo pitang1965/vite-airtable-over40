@@ -1,45 +1,31 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react';
+import Members from './components/Members';
+import FooterMenu from './components/FooterMenu';
+import styled from 'styled-components';
+
+const StyledApp = styled.div`
+  min-height: 100vh;
+  background: #efefbb;
+  background: linear-gradient(to right, #d4d3dd, #efefbb);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+`;
+
+const StyledH1 = styled.h1`
+  letter-spacing: 0.1em;
+`;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <StyledApp>
+        <StyledH1>Over 40 Web Club主要メンバー</StyledH1>
+        <Members />
+      <FooterMenu />
+    </StyledApp>
+  );
 }
 
-export default App
+export default App;
