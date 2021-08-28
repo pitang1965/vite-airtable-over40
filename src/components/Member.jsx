@@ -19,15 +19,15 @@ const StyledMember = styled.div`
 const StyledInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  height: 200px;
+  height: 140px;
   width: 180px;
 `;
 
 const StyledName = styled.a`
   color: #000;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
 `;
@@ -37,16 +37,25 @@ const ImageContainer = styled.img`
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  text-align: center;
 `;
 
-const StyledBio = styled.p`
+const StyledTitle = styled.p`
+  font-size: 1rem;
+  margin-top: 0.2em;
+  margin-bottom: 0.1em;
+`;
+
+const StyledBio = styled.div`
   flex-grow: 1;
+  margin: 0px;
+  overflow: auto;
   color: #333;
   background-color: rgb(0, 0, 0, 0.1);
-  padding: 5px 10px;
   border-radius: 10px;
   font-size: 0.8em;
+  text-align: left;
+  padding: 10px;
+  height: 50px;
   width: 100%;
 `;
 
@@ -85,6 +94,7 @@ const Member = ({ record }) => {
         >
           {record.Name}
         </StyledName>
+        <StyledTitle>{record.Title}</StyledTitle>
         <StyledBio>{record.Bio}</StyledBio>
       </StyledInfo>
       <StyledButton>編集</StyledButton>
