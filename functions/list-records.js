@@ -21,10 +21,11 @@ exports.handler = function (event, context, callback) {
           console.log(
             'Retrieved',
             record.get('Name'),
-            record.get('Title')
+            record.get('Title'),
+            record.id
           );
 
-          table.push(record.fields);
+          table.push({...record.fields, id: record.id});
         });
         // 次のページを取得するには、`fetchNextPage` を呼び出してください。
         // まだレコードがある場合、`page` が再度呼び出されます。

@@ -36,8 +36,8 @@ const Members = () => {
       {isError && <p>読み込みエラー</p>}
       {records && (
         <StyledMembers>
-          {records.map((record, index) => (
-            <Member key={index} record={record} />
+          {records.map((record) => (
+            <Member key={record.id} record={record} />
           ))}
         </StyledMembers>
       )}
