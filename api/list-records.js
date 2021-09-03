@@ -1,13 +1,10 @@
-const Airtable = require('airtable');
+const { table } = require('./helpers/airtable');
+const formattedReturn = require('./helpers/formattedReturn');
 
 exports.handler = function (event, context, callback) {
-  const base = new Airtable({
-    apiKey: process.env.AIRTABLE_SECRET_API_KEY,
-  }).base(process.env.AIRTABLE_BASE_ID);
+  const reconstructedTable = [];
 
-  const table = [];
-
-  base(process.env.AIRTABLE_TABLE_NAME)
+  table
     .select({
       // AIRTABLE_TABLE_NAMEで指定したテーブルの最初のmaxRecords件のレコードを取得
       maxRecords: 1500,
@@ -25,7 +22,7 @@ exports.handler = function (event, context, callback) {
             record.id
           );
 
-          table.push({...record.fields, id: record.id});
+          reconstructedTable.push({ ...record.fields, id: record.id });
         });
         // 次のページを取得するには、`fetchNextPage` を呼び出してください。
         // まだレコードがある場合、`page` が再度呼び出されます。
@@ -34,17 +31,9 @@ exports.handler = function (event, context, callback) {
       },
       function done(err) {
         if (err) {
-          console.error(err);
-          callback({
-            statusCode: err.statusCode,
-            body: JSON.stringify(err.message),
-          });
+          callback(formattedReturn(err.statusCode, err.message));
         }
-        const response = {
-          statusCode: 200, // HTTPステータスコード (200:成功)
-          body: JSON.stringify(table),
-        };
-        callback(null, response);
+        callback(null, formattedReturn(200, reconstructedTable));
       }
     );
 };
