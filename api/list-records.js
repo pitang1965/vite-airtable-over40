@@ -1,6 +1,7 @@
 const Airtable = require('airtable');
 
 exports.handler = function (event, context, callback) {
+  console.log ('event', event);
   const base = new Airtable({
     apiKey: process.env.AIRTABLE_SECRET_API_KEY,
   }).base(process.env.AIRTABLE_BASE_ID);
@@ -34,7 +35,7 @@ exports.handler = function (event, context, callback) {
       },
       function done(err) {
         if (err) {
-          console.table(err);
+          console.error(err);
           callback({
             statusCode: err.statusCode,
             body: JSON.stringify(err.message),

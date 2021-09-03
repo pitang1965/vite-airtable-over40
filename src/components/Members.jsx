@@ -16,7 +16,7 @@ const StyledMembers = styled.div`
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 const useRecords = () => {
-  const { data, error } = useSWR('/.netlify/functions/list-records', fetcher);
+  const { data, error } = useSWR('/api/list-records', fetcher);
 
   console.log(data);
 
