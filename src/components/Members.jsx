@@ -15,7 +15,7 @@ const StyledMembers = styled.div`
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useRecords = () => {
-  const { data, error } = useSWR('/.netlify/functions/list-records', fetcher);
+  const { data, error } = useSWR('/.netlify/functions/get-members', fetcher);
 
   console.log(data);
 
