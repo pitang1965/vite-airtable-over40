@@ -1,6 +1,5 @@
 import React from 'react';
 import useSWR from 'swr';
-import axios from 'axios';
 import Member from './Member';
 import styled from 'styled-components';
 
@@ -13,7 +12,7 @@ const StyledMembers = styled.div`
   max-width: 1200px;
 `;
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useRecords = () => {
   const { data, error } = useSWR('/.netlify/functions/list-records', fetcher);
