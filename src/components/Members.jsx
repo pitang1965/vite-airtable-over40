@@ -14,29 +14,35 @@ const StyledMembers = styled.div`
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const useRecords = () => {
+const useMembers = () => {
   const { data, error } = useSWR('/.netlify/functions/get-members', fetcher);
 
   console.log(data);
 
   return {
-    records: data,
+    members: data,
     isLoading: !error && !data,
     isError: error,
   };
 };
 
+
 const Members = () => {
-  const { records, isLoading, isError } = useRecords();
+  const { members, isLoading, isError } = useMembers();
+
+  const updateMember = (id, fields) => {
+    console.log(`id: ${id} `);
+    console.table(fields);
+  };
 
   return (
     <>
       {isLoading && <p>読込中...</p>}
       {isError && <p>読み込みエラー</p>}
-      {records && (
+      {members && (
         <StyledMembers>
-          {records.map((record) => (
-            <Member key={record.id} record={record} />
+          {members.map((member) => (
+            <Member key={member.id} id={member.id} fields={member} updateMember={updateMember} />
           ))}
         </StyledMembers>
       )}

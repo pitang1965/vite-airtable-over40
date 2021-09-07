@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import MemberEditForm from './MemberEditForm';
 
 const StyledMember = styled.div`
   display: flex;
@@ -80,25 +81,45 @@ const StyledButton = styled.button`
   }
 `;
 
-const Member = ({ record }) => {
+const Member = ({ id, fields }) => {
+  const [visible, setVisible] = useState(false);
+  const [member, setMember] = useState(fields);
+
+  const onCreate = (values) => {
+    console.log('Received values of form: ', values);
+    setVisible(false);
+    setMember((prev) => ({ ...prev, ...values }));
+    console.log('id: ', id);
+  };
+
   return (
-    <StyledMember>
-      <ImageContainer
-        src={record?.Photo && record.Photo[0].url}
-      ></ImageContainer>
-      <StyledInfo>
-        <StyledName
-          href={record?.['Homepage URL']}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          {record.Name}
-        </StyledName>
-        <StyledTitle>{record.Title}</StyledTitle>
-        <StyledBio>{record.Bio}</StyledBio>
-      </StyledInfo>
-      <StyledButton>編集</StyledButton>
-    </StyledMember>
+    <>
+      <StyledMember>
+        <ImageContainer
+          src={member?.Photo && member.Photo[0].url}
+        ></ImageContainer>
+        <StyledInfo>
+          <StyledName
+            href={member?.['Homepage URL']}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {member.Name}
+          </StyledName>
+          <StyledTitle>{member.Title}</StyledTitle>
+          <StyledBio>{member.Bio}</StyledBio>
+        </StyledInfo>
+        <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
+      </StyledMember>
+      <MemberEditForm
+        visible={visible}
+        member={member}
+        onCreate={onCreate}
+        onCancel={() => {
+          setVisible(false);
+        }}
+      />
+    </>
   );
 };
 
