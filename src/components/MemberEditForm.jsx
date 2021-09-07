@@ -28,7 +28,7 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel }) => {
           name: member.Name,
           title: member.Title,
           bio: member.Bio,
-          email: member.['Email address'],
+          email: member['Email address'],
         }}
       >
         <Form.Item
