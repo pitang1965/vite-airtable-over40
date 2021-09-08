@@ -81,7 +81,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const Member = ({ id, fields }) => {
+const Member = ({ id, fields, updateMember }) => {
   const [visible, setVisible] = useState(false);
   const [member, setMember] = useState(fields);
 
@@ -118,6 +118,7 @@ const Member = ({ id, fields }) => {
         onCancel={() => {
           setVisible(false);
         }}
+        updateMember={updateMember}
       />
     </>
   );

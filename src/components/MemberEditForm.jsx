@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Form, Input } from 'antd';
 
-const MemberEditForm = ({ visible, member, onCreate, onCancel }) => {
+const MemberEditForm = ({ visible, member, onCreate, onCancel, updateMember }) => {
   const [form] = Form.useForm();
   return (
     <Modal
@@ -16,6 +16,7 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel }) => {
           .validateFields()
           .then((values) => {
             onCreate(values);
+            updateMember(member.id, form.getFieldsValue());
           })
           .catch((info) => console.log('バリデーション失敗:', info));
       }}
@@ -25,14 +26,14 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel }) => {
         layout='vertical'
         name='form_in_modal'
         initialValues={{
-          name: member.Name,
-          title: member.Title,
-          bio: member.Bio,
-          email: member['Email address'],
+          Name: member.Name,
+          Title: member.Title,
+          Bio: member.Bio,
+          'Email address': member['Email address'],
         }}
       >
         <Form.Item
-          name='name'
+          name='Name'
           label='名前'
           rules={[
             {
@@ -44,7 +45,7 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name='title'
+          name='Title'
           label='タイトル'
           rules={[
             {
@@ -55,11 +56,11 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel }) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item name='bio' label='プロフィール'>
+        <Form.Item name='Bio' label='プロフィール'>
           <Input.TextArea autoSize='true' />
         </Form.Item>
         <Form.Item
-          name='email'
+          name='Email address'
           label='メールアドレス'
           rules={[
             {

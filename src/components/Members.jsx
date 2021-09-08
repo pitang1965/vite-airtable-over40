@@ -15,7 +15,7 @@ const StyledMembers = styled.div`
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useMembers = () => {
-  const { data, error } = useSWR('/.netlify/functions/get-members', fetcher);
+  const { data, error, mutate } = useSWR('/.netlify/functions/get-members', fetcher);
 
   console.log(data);
 
@@ -23,16 +23,21 @@ const useMembers = () => {
     members: data,
     isLoading: !error && !data,
     isError: error,
+    mutate,
   };
 };
 
-
 const Members = () => {
-  const { members, isLoading, isError } = useMembers();
+  const { members, isLoading, isError, mutate } = useMembers();
 
-  const updateMember = (id, fields) => {
+  const updateMember = async (id, fields) => {
     console.log(`id: ${id} `);
-    console.table(fields);
+    console.table('fields', fields);
+    const newMembers = members.map((member, index, array) =>
+      id === member.id ? Object.assign(array[index], fields) : member
+    );
+    console.log('newMemberrs', newMembers);
+    await mutate(newMembers, false);
   };
 
   return (
@@ -42,7 +47,12 @@ const Members = () => {
       {members && (
         <StyledMembers>
           {members.map((member) => (
-            <Member key={member.id} id={member.id} fields={member} updateMember={updateMember} />
+            <Member
+              key={member.id}
+              id={member.id}
+              fields={member}
+              updateMember={updateMember}
+            />
           ))}
         </StyledMembers>
       )}
