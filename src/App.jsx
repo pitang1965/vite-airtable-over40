@@ -2,6 +2,7 @@ import React from 'react';
 import Members from './components/Members';
 import FooterMenu from './components/FooterMenu';
 import styled from 'styled-components';
+import { Global } from './Styled/Global';
 
 const StyledApp = styled.div`
   min-height: 100vh;
@@ -20,11 +21,14 @@ const StyledH1 = styled.h1`
 
 function App() {
   return (
-    <StyledApp>
+    <>
+      <Global />
+      <StyledApp>
         <StyledH1>Over 40 Web Club主要メンバー</StyledH1>
         <Members />
-      <FooterMenu />
-    </StyledApp>
+        <FooterMenu />
+      </StyledApp>
+    </>
   );
 }
 
