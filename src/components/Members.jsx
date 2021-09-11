@@ -12,10 +12,12 @@ const StyledMembers = styled.div`
   max-width: 1200px;
 `;
 
+const membersEndopoint = '/.netlify/functions/get-members';
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const useMembers = () => {
-  const { data, error, mutate } = useSWR('/.netlify/functions/get-members', fetcher);
+const useGetMembers = () => {
+  const { data, error, mutate } = useSWR(membersEndopoint, fetcher);
 
   console.log(data);
 
@@ -28,7 +30,7 @@ const useMembers = () => {
 };
 
 const Members = () => {
-  const { members, isLoading, isError, mutate } = useMembers();
+  const { members, isLoading, isError, mutate } = useGetMembers();
 
   const updateMember = async (id, fields) => {
     console.log(`id: ${id} `);

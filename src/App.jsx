@@ -1,8 +1,11 @@
 import React from 'react';
-import Members from './components/Members';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FooterMenu from './components/FooterMenu';
 import styled from 'styled-components';
-import { Global } from './Styled/Global';
+import { Global } from './styled/Global';
+import Home from './pages/Home';
+import About from './pages/About';
+import Navber from './components/Navbar';
 
 const StyledApp = styled.div`
   min-height: 100vh;
@@ -15,20 +18,19 @@ const StyledApp = styled.div`
   margin: 0;
 `;
 
-const StyledH1 = styled.h1`
-  letter-spacing: 0.1em;
-`;
-
 function App() {
   return (
-    <>
+    <Router>
       <Global />
       <StyledApp>
-        <StyledH1>Over 40 Web Club主要メンバー</StyledH1>
-        <Members />
+        <Navber />
+        <Switch>
+          <Route path='/about' component={About} />
+          <Route path='/' component={Home} />
+        </Switch>
         <FooterMenu />
       </StyledApp>
-    </>
+    </Router>
   );
 }
 
