@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledLink } from '../styled/StyledLink';
-import { StyledTitle } from '../styled/StyledTitle';
+const Menu = styled.nav`
+  & ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+`;
 
 const Navbar = () => {
   return (
-    <nav>
-      <StyledTitle>Over 40 Web Club主要メンバー</StyledTitle>
+    <Menu>
       <ul>
         <li>
           <StyledLink to='/'>Home</StyledLink>
@@ -15,7 +20,7 @@ const Navbar = () => {
           <StyledLink to='/about'>About</StyledLink>
         </li>
       </ul>
-    </nav>
+    </Menu>
   );
 };
 
