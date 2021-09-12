@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledLink } from '../styledddd/StyledLink';
+import { StyledLink } from '../styled/StyledLink';
 const Menu = styled.nav`
   & ul {
     display: flex;
