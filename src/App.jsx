@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FooterMenu from './components/FooterMenu';
 import styled from 'styled-components';
-import { GlobalStyle } from './styled/Global';
+import { GlobalStyle } from './styledddd/Global';
 import Home from './pages/Home';
 import About from './pages/About';
 import Navber from './components/Navbar';

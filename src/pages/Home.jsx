@@ -1,6 +1,6 @@
 import React from 'react';
 import Members from '../components/Members';
-import { StyledPageTitle } from '../styled/StyledPageTitle';
+import { StyledPageTitle } from '../styledddd/StyledPageTitle';
 
 const Home = () => {
   return (

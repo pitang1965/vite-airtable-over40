@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledPageTitle } from '../styled/StyledPageTitle';
+import { StyledPageTitle } from '../styledddd/StyledPageTitle';
 
 const StyledAbout = styled.div`
   height: 80vh;
