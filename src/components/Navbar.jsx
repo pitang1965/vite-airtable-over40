@@ -17,6 +17,9 @@ const Navbar = () => {
           <StyledLink to='/'>Home</StyledLink>
         </li>
         <li>
+          <StyledLink to='/workshop'>Workshop</StyledLink>
+        </li>
+        <li>
           <StyledLink to='/about'>About</StyledLink>
         </li>
       </ul>

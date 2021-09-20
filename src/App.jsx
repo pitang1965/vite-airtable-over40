@@ -4,6 +4,7 @@ import FooterMenu from './components/FooterMenu';
 import styled from 'styled-components';
 import { GlobalStyle } from './styled/Global';
 import Home from './pages/Home';
+import Workshop from './pages/Workshop';
 import About from './pages/About';
 import Navber from './components/Navbar';
 
@@ -26,6 +27,7 @@ function App() {
         <Navber />
         <Switch>
           <Route path='/about' component={About} />
+          <Route path='/workshop' component={Workshop} />
           <Route path='/' component={Home} />
         </Switch>
         <FooterMenu />
