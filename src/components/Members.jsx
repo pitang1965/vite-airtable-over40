@@ -52,7 +52,7 @@ const Members = () => {
             <Member
               key={member.id}
               id={member.id}
-              fields={member}
+              fields={member.fields}
               updateMember={updateMember}
             />
           ))}

@@ -8,6 +8,6 @@ module.exports = async (event) => {
     return formattedReturn(200, updatedMember);
   } catch (err) {
     console.error(err);
-    return formattedReturn(500, {});
+    return formattedReturn(err.statusCode, err.message);
   }
 };

@@ -81,14 +81,14 @@ const StyledButton = styled.button`
   }
 `;
 
-const Member = ({ id, fields, updateMember }) => {
+const Member = ({ id, fields: prevFields, updateMember }) => {
   const [visible, setVisible] = useState(false);
-  const [member, setMember] = useState(fields);
+  const [fields, setFields] = useState(prevFields);
 
   const onCreate = (values) => {
     console.log('Received values of form: ', values);
     setVisible(false);
-    setMember((prev) => ({ ...prev, ...values }));
+    setFields((prev) => ({ ...prev, ...values }));
     console.log('id: ', id);
   };
 
@@ -96,24 +96,24 @@ const Member = ({ id, fields, updateMember }) => {
     <>
       <StyledMember>
         <ImageContainer
-          src={member?.Photo && member.Photo[0].url}
+          src={fields?.Photo && fields.Photo[0].url}
         ></ImageContainer>
         <StyledInfo>
           <StyledName
-            href={member?.['Homepage URL']}
+            href={fields?.['Homepage URL']}
             target='_blank'
             rel='noopener noreferrer'
           >
-            {member.Name}
+            {fields.Name}
           </StyledName>
-          <StyledTitle>{member.Title}</StyledTitle>
-          <StyledBio>{member.Bio}</StyledBio>
+          <StyledTitle>{fields.Title}</StyledTitle>
+          <StyledBio>{fields.Bio}</StyledBio>
         </StyledInfo>
         <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
       </StyledMember>
       <MemberEditForm
         visible={visible}
-        member={member}
+        member={fields}
         onCreate={onCreate}
         onCancel={() => {
           setVisible(false);
