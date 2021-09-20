@@ -12,7 +12,7 @@ const StyledMembers = styled.div`
   max-width: 1200px;
 `;
 
-const membersEndopoint = '/.netlify/functions/get-members';
+const membersEndopoint = '/.netlify/functions/getMembers';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 

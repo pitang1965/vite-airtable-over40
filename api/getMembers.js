@@ -6,6 +6,7 @@ exports.handler = async () => {
     const formattedMembers = [];
     await table
       .select({
+        filterByFormula: `Name != ''`,
         // テーブルの最初のmaxRecords件のレコードを取得
         maxRecords: 1500,
         view: process.env.AIRTABLE_VIEW_NAME,
