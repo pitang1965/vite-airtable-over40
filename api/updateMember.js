@@ -1,5 +1,5 @@
-const { table } = require('./helpers/airtable');
-const formattedReturn = require('./helpers/formattedReturn');
+const { table } = require('./utils/airtable');
+const formattedReturn = require('./utils/formattedReturn');
 
 module.exports = async (event) => {
   const { id, ...fields } = JSON.parse(event.body);
