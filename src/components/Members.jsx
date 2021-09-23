@@ -12,12 +12,13 @@ const StyledMembers = styled.div`
   max-width: 1200px;
 `;
 
-const membersEndopoint = '/.netlify/functions/getMembers';
+const getMembersEndopoint = '/.netlify/functions/getMembers';
+const updateMemberEndopoint = '/.netlify/functions/updateMember';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useGetMembers = () => {
-  const { data, error, mutate } = useSWR(membersEndopoint, fetcher);
+  const { data, error, mutate } = useSWR(getMembersEndopoint, fetcher);
 
   console.log(data);
 
@@ -29,16 +30,30 @@ const useGetMembers = () => {
   };
 };
 
+const updateMembers = async (member) => {
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(member),
+  };
+  console.log('★updateMembers', member)
+  const res = await fetch(updateMemberEndopoint, options);
+  const data = await res.json();
+  console.log('戻り値', data);
+};
+
 const Members = () => {
   const { members, isLoading, isError, mutate } = useGetMembers();
 
   const updateMember = async (id, fields) => {
     console.log(`id: ${id} `);
     console.table('fields', fields);
+
+    const newMember = { id, fields };
     const newMembers = members.map((member, index, array) =>
-      id === member.id ? Object.assign(array[index], fields) : member
+      id === member.id ? Object.assign(array[index], newMember) : member
     );
-    console.log('newMemberrs', newMembers);
+
+    await updateMembers(newMember);
     await mutate(newMembers, false);
   };
 

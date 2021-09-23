@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Form, Input } from 'antd';
 
-const MemberEditForm = ({ visible, member, onCreate, onCancel, updateMember }) => {
+const MemberEditForm = ({ visible, id, fields, onCreate, onCancel, updateMember }) => {
   const [form] = Form.useForm();
   return (
     <Modal
@@ -16,7 +16,7 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel, updateMember }) =
           .validateFields()
           .then((values) => {
             onCreate(values);
-            updateMember(member.id, form.getFieldsValue());
+            updateMember(id, form.getFieldsValue());
           })
           .catch((info) => console.log('バリデーション失敗:', info));
       }}
@@ -26,10 +26,10 @@ const MemberEditForm = ({ visible, member, onCreate, onCancel, updateMember }) =
         layout='vertical'
         name='form_in_modal'
         initialValues={{
-          Name: member.Name,
-          Title: member.Title,
-          Bio: member.Bio,
-          'Email address': member['Email address'],
+          Name: fields.Name,
+          Title: fields.Title,
+          Bio: fields.Bio,
+          'Email address': fields['Email address'],
         }}
       >
         <Form.Item

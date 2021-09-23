@@ -86,10 +86,8 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
   const [fields, setFields] = useState(prevFields);
 
   const onCreate = (values) => {
-    console.log('Received values of form: ', values);
     setVisible(false);
     setFields((prev) => ({ ...prev, ...values }));
-    console.log('id: ', id);
   };
 
   return (
@@ -113,7 +111,8 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
       </StyledMember>
       <MemberEditForm
         visible={visible}
-        member={fields}
+        id={id}
+        fields={fields}
         onCreate={onCreate}
         onCancel={() => {
           setVisible(false);
