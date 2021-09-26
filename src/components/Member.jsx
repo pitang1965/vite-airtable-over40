@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useAuth0 } from '@auth0/auth0-react';
 import MemberEditForm from './MemberEditForm';
 
 const StyledMember = styled.div`
@@ -84,6 +85,7 @@ const StyledButton = styled.button`
 const Member = ({ id, fields: prevFields, updateMember }) => {
   const [visible, setVisible] = useState(false);
   const [fields, setFields] = useState(prevFields);
+  const { isAuthenticated } = useAuth0();
 
   const onCreate = (values) => {
     setVisible(false);
@@ -107,7 +109,8 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
           <StyledTitle>{fields.Title}</StyledTitle>
           <StyledBio>{fields.Bio}</StyledBio>
         </StyledInfo>
-        <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
+        {isAuthenticated && <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>}
+        
       </StyledMember>
       <MemberEditForm
         visible={visible}

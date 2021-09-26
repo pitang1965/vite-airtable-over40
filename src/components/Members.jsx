@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import useSWR from 'swr';
 import Member from './Member';
 import styled from 'styled-components';
@@ -30,19 +31,32 @@ const useGetMembers = () => {
   };
 };
 
-const updateMembers = async (member) => {
-  const options = {
-    method: 'PATCH',
-    body: JSON.stringify(member),
-  };
-  console.log('★updateMembers', member)
-  const res = await fetch(updateMemberEndopoint, options);
-  const data = await res.json();
-  console.log('戻り値', data);
-};
-
 const Members = () => {
+  const { getAccessTokenSilently } = useAuth0();
   const { members, isLoading, isError, mutate } = useGetMembers();
+
+  const updateMembers = async (member) => {
+    try {
+      const accessToken = await getAccessTokenSilently({
+        audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+        scope: import.meta.env.VITE_AUTH0_SCOPE,
+      });
+  
+      const options = {
+        method: 'PATCH',
+        body: JSON.stringify(member),
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+  
+      const res = await fetch(updateMemberEndopoint, options);
+      const data = await res.json();
+      console.log('戻り値', data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const updateMember = async (id, fields) => {
     console.log(`id: ${id} `);
