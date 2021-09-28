@@ -1,5 +1,8 @@
 const { table } = require('./utils/airtable');
-const {getAccessTokenFromHeaders} = require('./utils/auth');
+const {
+  getAccessTokenFromHeaders,
+  validateAccessToken,
+} = require('./utils/auth');
 const formattedReturn = require('./utils/formattedReturn');
 
 exports.handler = async (event) => {
@@ -8,8 +11,9 @@ exports.handler = async (event) => {
   }
   const { id, fields } = JSON.parse(event.body);
   const token = getAccessTokenFromHeaders(event.headers);
-  if (!token) {
-    return formattedReturn(401, 'ログインしていません。');
+  const user = await validateAccessToken(token);
+  if (!user) {
+    return formattedReturn(401, '認証されていません。');
   }
 
   try {
