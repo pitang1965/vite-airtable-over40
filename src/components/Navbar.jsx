@@ -10,6 +10,7 @@ const Menu = styled.nav`
     display: flex;
     gap: 1rem;
     list-style: none;
+    align-items: center;
   }
 `;
 
