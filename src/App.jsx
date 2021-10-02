@@ -4,6 +4,7 @@ import FooterMenu from './components/FooterMenu';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styled/Global';
 import { lightTheme, darkTheme } from './styled/Themes';
+import useTheme from './hooks/useTheme';
 import Home from './pages/Home';
 import Workshop from './pages/Workshop';
 import About from './pages/About';
@@ -24,7 +25,7 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const theme = 'light';
+  const [theme, toggleTheme] = useTheme();
   const currentTheme = theme === 'light' ? lightTheme : darkTheme;
 
   return (
@@ -32,7 +33,7 @@ function App() {
       <ThemeProvider theme={currentTheme}>
         <GlobalStyle />
         <StyledApp>
-          <Navber />
+          <Navber toggleTheme={toggleTheme} />
           <Switch>
             <Route path='/about' component={About} />
             <Route path='/workshop' component={Workshop} />

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StyledLink } from '../styled/StyledLink';
 import { useAuth0 } from '@auth0/auth0-react';
+import useTheme from '../hooks/useTheme';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
@@ -14,8 +15,9 @@ const Menu = styled.nav`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({toggleTheme}) => {
   const { isAuthenticated } = useAuth0();
+  
   return (
     <Menu>
       <ul>
@@ -38,6 +40,7 @@ const Navbar = () => {
             <LogoutButton />
           </li>
         )}
+        <button onClick={toggleTheme}>テーマ切り替え</button>
       </ul>
     </Menu>
   );
