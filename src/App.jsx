@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FooterMenu from './components/FooterMenu';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styled/Global';
+import { lightTheme, darkTheme } from './styled/Themes';
 import Home from './pages/Home';
 import Workshop from './pages/Workshop';
 import About from './pages/About';
@@ -10,7 +11,11 @@ import Navber from './components/Navbar';
 
 const StyledApp = styled.div`
   min-height: 100vh;
-  background: linear-gradient(to right, var(--main-bg-gradient1), var(--main-bg-gradient2));
+  background: linear-gradient(
+    to right,
+    var(--main-bg-gradient-color1),
+    var(--main-bg-gradient-color2)
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,18 +24,23 @@ const StyledApp = styled.div`
 `;
 
 function App() {
+  const theme = 'light';
+  const currentTheme = theme === 'light' ? lightTheme : darkTheme;
+
   return (
     <Router>
-      <GlobalStyle />
-      <StyledApp>
-        <Navber />
-        <Switch>
-          <Route path='/about' component={About} />
-          <Route path='/workshop' component={Workshop} />
-          <Route path='/' component={Home} />
-        </Switch>
-        <FooterMenu />
-      </StyledApp>
+      <ThemeProvider theme={currentTheme}>
+        <GlobalStyle />
+        <StyledApp>
+          <Navber />
+          <Switch>
+            <Route path='/about' component={About} />
+            <Route path='/workshop' component={Workshop} />
+            <Route path='/' component={Home} />
+          </Switch>
+          <FooterMenu />
+        </StyledApp>
+      </ThemeProvider>
     </Router>
   );
 }

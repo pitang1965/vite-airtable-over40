@@ -1,14 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
-const isDarkMode = false;
-
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --main-bg-gradient1: ${isDarkMode ? '#3D0529' : '#d4d3dd'};
-    --main-bg-gradient2: ${isDarkMode ? '#7B103E' : '#efefbb'};
-    --main-fg-color: ${isDarkMode ? '#fff' : '#333'};
-    --card-bg-color: ${isDarkMode ? '#15232D' : '#fff'};
-    --card-textarer-bg-color: ${isDarkMode ? '#193549' : '#eee'};
+    --main-bg-gradient-color1: ${(props) => props.theme.mainBgGradientColor1};
+    --main-bg-gradient-color2: ${(props) => props.theme.mainBgGradientColor2};
+    --main-fg-color: ${(props) => props.theme.mainFgColor};
+    --card-bg-color: ${(props) => props.theme.cardBgColor};
+    --card-textarer-bg-color: ${(props) => props.theme.cardTextarerBgColor};
   }
   * {
     color: var(--main-fg-color);

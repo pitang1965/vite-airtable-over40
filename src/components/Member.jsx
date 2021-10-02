@@ -106,8 +106,9 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
           <StyledTitle>{fields.Title}</StyledTitle>
           <StyledBio>{fields.Bio}</StyledBio>
         </StyledInfo>
-        {isAuthenticated && <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>}
-        
+        {isAuthenticated && (
+          <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
+        )}
       </StyledMember>
       <MemberEditForm
         visible={visible}
