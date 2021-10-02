@@ -10,8 +10,7 @@ import Navber from './components/Navbar';
 
 const StyledApp = styled.div`
   min-height: 100vh;
-  background: #efefbb;
-  background: linear-gradient(to right, #d4d3dd, #efefbb);
+  background: linear-gradient(to right, var(--main-bg-gradient1), var(--main-bg-gradient2));
   display: flex;
   flex-direction: column;
   align-items: center;

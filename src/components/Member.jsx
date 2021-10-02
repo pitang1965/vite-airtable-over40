@@ -8,8 +8,8 @@ const StyledMember = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #eee;
   border-radius: 10px;
+  background-color: var(--card-bg-color);
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
   margin: 10px;
   padding: 10px;
@@ -28,14 +28,12 @@ const StyledInfo = styled.div`
 `;
 
 const StyledName = styled.a`
-  color: #000;
   font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
 `;
 
 const ImageContainer = styled.img`
-  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -51,8 +49,7 @@ const StyledBio = styled.div`
   flex-grow: 1;
   margin: 0px;
   overflow: auto;
-  color: #333;
-  background-color: rgb(0, 0, 0, 0.1);
+  background-color: var(--card-textarer-bg-color);
   border-radius: 10px;
   font-size: 0.8em;
   text-align: left;
