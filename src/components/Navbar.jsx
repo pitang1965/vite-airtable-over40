@@ -15,9 +15,9 @@ const Menu = styled.nav`
   }
 `;
 
-const Navbar = ({toggleTheme}) => {
+const Navbar = ({ toggleTheme }) => {
   const { isAuthenticated } = useAuth0();
-  
+
   return (
     <Menu>
       <ul>
@@ -40,7 +40,9 @@ const Navbar = ({toggleTheme}) => {
             <LogoutButton />
           </li>
         )}
-        <button onClick={toggleTheme}>テーマ切り替え</button>
+        <li>
+          <button onClick={toggleTheme}>テーマ切り替え</button>
+        </li>
       </ul>
     </Menu>
   );
