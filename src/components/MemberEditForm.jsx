@@ -1,11 +1,30 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Form, Input } from 'antd';
+import styled from 'styled-components';
 
-const MemberEditForm = ({ visible, id, fields, onCreate, onCancel, updateMember }) => {
+const StyledModal = styled(Modal)`
+  & .ant-btn-primary, & .ant-btn-primary > span {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+  }
+  & *, label {
+    background: var(--card-bg-color);
+    color: var(--main-fg-color);
+  }
+`;
+
+const MemberEditForm = ({
+  visible,
+  id,
+  fields,
+  onCreate,
+  onCancel,
+  updateMember,
+}) => {
   const [form] = Form.useForm();
   return (
-    <Modal
+    <StyledModal
       visible={visible}
       title='メンバー情報の編集'
       okText='更新'
@@ -73,7 +92,7 @@ const MemberEditForm = ({ visible, id, fields, onCreate, onCancel, updateMember 
           <Input placeholder='abc@pitang1965.com' />
         </Form.Item>
       </Form>
-    </Modal>
+    </StyledModal>
   );
 };
 
