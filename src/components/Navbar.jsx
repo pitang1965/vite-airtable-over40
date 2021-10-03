@@ -4,7 +4,7 @@ import { StyledLink } from '../styled/StyledLink';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import { StyledButton } from '../styled/StyledButton';
+import { StyledButtonChangeTheme } from '../styled/StyledButton';
 
 const Menu = styled.nav`
   & ul {
@@ -41,7 +41,7 @@ const Navbar = ({ toggleTheme }) => {
           </li>
         )}
         <li>
-          <StyledButton onClick={toggleTheme}>テーマ切り替え</StyledButton>
+          <StyledButtonChangeTheme onClick={toggleTheme}>テーマ切り替え</StyledButtonChangeTheme>
         </li>
       </ul>
     </Menu>
