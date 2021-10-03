@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import useSWR from 'swr';
 import Member from './Member';
 import styled from 'styled-components';
+import { Loader } from '../styled/Loader';
 
 const StyledMembers = styled.div`
   display: flex;
@@ -73,7 +74,7 @@ const Members = () => {
 
   return (
     <>
-      {isLoading && <p>読込中...</p>}
+      {isLoading && <Loader>読込中...</Loader>}
       {isError && <p>読み込みエラー</p>}
       {members && (
         <StyledMembers>
