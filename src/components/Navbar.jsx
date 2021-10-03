@@ -41,7 +41,7 @@ const Navbar = ({ toggleTheme }) => {
           </li>
         )}
         <li>
-          <StyledButtonChangeTheme onClick={toggleTheme}>テーマ切り替え</StyledButtonChangeTheme>
+          <StyledButtonChangeTheme onClick={toggleTheme}>テーマ切替</StyledButtonChangeTheme>
         </li>
       </ul>
     </Menu>
