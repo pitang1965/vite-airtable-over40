@@ -1,5 +1,7 @@
 const sharedStyles = {
   // 全テーマ共通設定
+  buttonBgColor: '#34d5df',
+  buttonBgHoverColor: '#cb43f5',
 };
 
 export const darkTheme = {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 import MemberEditForm from './MemberEditForm';
+import { StyledButton } from '../styled/StyledButton';
 
 const StyledMember = styled.div`
   display: flex;
@@ -56,27 +57,6 @@ const StyledBio = styled.div`
   padding: 10px;
   height: 50px;
   width: 100%;
-`;
-
-const StyledButton = styled.button`
-  display: block;
-  position: relative;
-  height: 2em;
-  line-height: 2em;
-  font-size: 1em;
-  border-radius: 5px;
-  width: 5em;
-  text-align: center;
-  text-decoration: none;
-  color: #1b1b1b;
-  background: #fff;
-  border: 1px solid #1b1b1b;
-  &:hover {
-    background: #1b1b1b;
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-  }
 `;
 
 const Member = ({ id, fields: prevFields, updateMember }) => {

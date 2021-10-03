@@ -7,6 +7,8 @@ export const GlobalStyle = createGlobalStyle`
     --main-fg-color: ${(props) => props.theme.mainFgColor};
     --card-bg-color: ${(props) => props.theme.cardBgColor};
     --card-textarer-bg-color: ${(props) => props.theme.cardTextarerBgColor};
+    --button-bg-color: ${(props) => props.theme.buttonBgColor};
+    --button-bg-hover-color: ${(props) => props.theme.buttonBgHoverColor};
   }
   * {
     color: var(--main-fg-color);
