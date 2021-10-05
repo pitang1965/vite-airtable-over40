@@ -4,13 +4,29 @@ import { Modal, Form, Input } from 'antd';
 import styled from 'styled-components';
 
 const StyledModal = styled(Modal)`
-  & .ant-btn-primary, & .ant-btn-primary > span {
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-  }
-  & *, label {
-    background: var(--card-bg-color);
+  .ant-modal-header, .ant-modal-title, .ant-modal-content, .ant-input, label {
     color: var(--main-fg-color);
+    background: var(--card-bg-color);
+  }
+
+  /* [キャンセル]ボタンの色 */
+  .ant-btn, .ant-btn > span {
+    color: var(--main-fg-color);
+    background-color: var(--card-bg-color);
+  }
+  .ant-btn:hover, .ant-btn > span:hover {
+    color: var(--card-bg-color);
+    background-color: var(--main-fg-color);
+  }
+
+  /* [更新]ボタンの色 */
+  .ant-btn-primary, .ant-btn-primary > span {
+    color: var(--button-fg-color);
+    background-color: var(--button-bg-color);
+  }
+  .ant-btn-primary:hover, .ant-btn-primary > span:hover {
+    color: var(--button-fg-hover-color);
+    background-color: var(--button-bg-hover-color);
   }
 `;
 

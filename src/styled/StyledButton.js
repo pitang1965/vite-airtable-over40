@@ -11,21 +11,21 @@ export const StyledButton = styled.button`
   padding: 0 1em;
   text-align: center;
   text-decoration: none;
-  color: #1b1b1b;
+  color: var(--button-fg-color);
   background-color: var(--button-bg-color);
   &:hover {
+    color: var(--button-fg-hover-color);
     background-color: var(--button-bg-hover-color);
-    color: #fff;
     cursor: pointer;
     text-decoration: none;
   }
 `;
 
 export const StyledButtonChangeTheme = styled(StyledButton)`
-  color: var(--card-bg-color);
+  color: var(--button-bg-color);
   background-color: var(--main-fg-color);
   &:hover {
     color: var(--main-fg-color);
-    background-color: var(--card-bg-color);
+    background-color: var(--button-bg-hover-color);
   }
 `;

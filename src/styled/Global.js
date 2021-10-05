@@ -6,7 +6,9 @@ export const GlobalStyle = createGlobalStyle`
     --main-bg-gradient-color2: ${(props) => props.theme.mainBgGradientColor2};
     --main-fg-color: ${(props) => props.theme.mainFgColor};
     --card-bg-color: ${(props) => props.theme.cardBgColor};
-    --card-textarer-bg-color: ${(props) => props.theme.cardTextarerBgColor};
+    --card-textarer-bg-color: ${(props) => props.theme.cardTextareaBgColor};
+    --button-fg-color: ${(props) => props.theme.buttonFgColor};
+    --button-fg-hover-color: ${(props) => props.theme.buttonFgHoverColor};
     --button-bg-color: ${(props) => props.theme.buttonBgColor};
     --button-bg-hover-color: ${(props) => props.theme.buttonBgHoverColor};
   }
