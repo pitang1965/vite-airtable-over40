@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import useSWR from 'swr';
 import Member from './Member';
 import styled from 'styled-components';
 import { Loader } from '../styled/Loader';
+import { StyledError } from '../styled/StyledError';
 
 const StyledMembers = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ const useGetMembers = () => {
 const Members = () => {
   const { getAccessTokenSilently } = useAuth0();
   const { members, isLoading, isError, mutate } = useGetMembers();
+  const [updateErrorMessage, setUpdateErrorMessage] = useState(null);
 
   const updateMembers = async (member) => {
     try {
@@ -42,7 +44,7 @@ const Members = () => {
         audience: import.meta.env.VITE_AUTH0_AUDIENCE,
         scope: import.meta.env.VITE_AUTH0_SCOPE,
       });
-  
+
       const options = {
         method: 'PATCH',
         body: JSON.stringify(member),
@@ -50,12 +52,13 @@ const Members = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       };
-  
+
       const res = await fetch(updateMemberEndopoint, options);
-      const data = await res.json();
-      console.log('戻り値', data);
+      setUpdateErrorMessage(res.ok ? null : res.statusText);
+      // await res.json();
     } catch (err) {
       console.log(err);
+      setUpdateErrorMessage(err.message);
     }
   };
 
@@ -68,14 +71,21 @@ const Members = () => {
       id === member.id ? Object.assign(array[index], newMember) : member
     );
 
-    await updateMembers(newMember);
-    await mutate(newMembers, false);
+    try {
+      await updateMembers(newMember);
+      await mutate(newMembers, false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
     <>
       {isLoading && <Loader>読込中...</Loader>}
-      {isError && <p>読み込みエラー</p>}
+      {isError && <StyledError>読み込みエラー</StyledError>}
+      {updateErrorMessage !== null && (
+        <StyledError>更新エラー：{updateErrorMessage}</StyledError>
+      )}
       {members && (
         <StyledMembers>
           {members.map((member) => (
