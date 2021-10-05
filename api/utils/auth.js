@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const jwks = require('jwks-rsa');
 const jwksClient = jwks({
-  jwksUri: `https://${import.meta.env.VITE_AUTH0_DOMAIN}/.well-known/jwks.json`,
-  audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+  jwksUri: `https://${process.env.VITE_AUTH0_DOMAIN}/.well-known/jwks.json`,
+  audience: process.env.VITE_AUTH0_AUDIENCE,
 });
 const { promisify } = require('util');
 
