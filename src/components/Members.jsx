@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Loader } from '../styled/Loader';
 import { StyledError } from '../styled/StyledError';
 
-const StyledMembers = styled.div`
+const StyledMembers = styled.section`
   display: flex;
   flex-wrap: wrap;
   align-items: space-between;

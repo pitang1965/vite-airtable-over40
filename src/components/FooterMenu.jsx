@@ -7,7 +7,7 @@ const StyledLink = styled.a`
 
 const FooterMenu = () => {
   return (
-    <div>
+    <footer>
       <StyledLink
         href='https://reactjs.org'
         target='_blank'
@@ -23,7 +23,7 @@ const FooterMenu = () => {
       >
         Vite Docs
       </StyledLink>
-    </div>
+    </footer>
   );
 };
 

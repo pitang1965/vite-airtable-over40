@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import MemberEditForm from './MemberEditForm';
 import { StyledButton } from '../styled/StyledButton';
 
-const StyledMember = styled.div`
+const StyledMember = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
