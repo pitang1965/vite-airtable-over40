@@ -9,6 +9,7 @@ import { StyledButtonChangeTheme } from '../styled/StyledButton';
 const Menu = styled.nav`
   & ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     list-style: none;
     align-items: center;
