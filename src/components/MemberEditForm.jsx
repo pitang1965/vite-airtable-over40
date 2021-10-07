@@ -14,9 +14,8 @@ const StyledModal = styled(Modal)`
     color: var(--main-fg-color);
     background-color: var(--card-bg-color);
   }
-  .ant-btn:hover, .ant-btn > span:hover {
-    color: var(--card-bg-color);
-    background-color: var(--main-fg-color);
+  .ant-btn:hover {
+    font-weight: bold;
   }
 
   /* [更新]ボタンの色 */
@@ -24,9 +23,8 @@ const StyledModal = styled(Modal)`
     color: var(--button-fg-color);
     background-color: var(--button-bg-color);
   }
-  .ant-btn-primary:hover, .ant-btn-primary > span:hover {
-    color: var(--button-fg-hover-color);
-    background-color: var(--button-bg-hover-color);
+  .ant-btn-primary:hover {
+    font-weight: bold;
   }
 `;
 
