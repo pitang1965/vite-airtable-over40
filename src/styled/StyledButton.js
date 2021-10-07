@@ -22,10 +22,10 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledButtonChangeTheme = styled(StyledButton)`
-  color: var(--button-bg-color);
+  color: var(--card-bg-color);
   background-color: var(--main-fg-color);
   &:hover {
     color: var(--main-fg-color);
-    background-color: var(--button-bg-hover-color);
+    background-color: var(--card-bg-color);
   }
 `;
