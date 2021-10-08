@@ -5,7 +5,7 @@ const {
 } = require('./utils/auth');
 const formattedReturn = require('./utils/formattedReturn');
 
-exports.handler = async (event) => {
+module.exports = async (event) => {
   if (event.httpMethod !== 'PATCH') {
     return formattedReturn(405, 'Bad request');
   }

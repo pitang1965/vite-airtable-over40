@@ -1,7 +1,7 @@
 const { getMembers } = require('./utils/airtable');
 const formattedReturn = require('./utils/formattedReturn');
 
-exports.handler = async () => {
+module.exports = async () => {
   try {
     const formattedMembers = await getMembers();
     return formattedReturn(200, formattedMembers);

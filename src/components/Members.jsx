@@ -15,13 +15,12 @@ const StyledMembers = styled.section`
   max-width: 1200px;
 `;
 
-const getMembersEndopoint = '/.netlify/functions/getMembers';
-const updateMemberEndopoint = '/.netlify/functions/updateMember';
+const membersEndopoint = '/.netlify/functions/members';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useGetMembers = () => {
-  const { data, error, mutate } = useSWR(getMembersEndopoint, fetcher);
+  const { data, error, mutate } = useSWR(membersEndopoint, fetcher);
 
   console.log(data);
 
@@ -53,7 +52,7 @@ const Members = () => {
         },
       };
 
-      const res = await fetch(updateMemberEndopoint, options);
+      const res = await fetch(membersEndopoint, options);
       setUpdateErrorMessage(res.ok ? null : res.statusText);
       // await res.json();
     } catch (err) {
