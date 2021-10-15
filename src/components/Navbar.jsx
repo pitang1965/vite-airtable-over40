@@ -16,8 +16,14 @@ const Menu = styled.nav`
   }
 `;
 
+const ImageContainer = styled.img`
+  border-radius: 50%;
+  padding: 5px;
+`;
+
 const Navbar = ({ toggleTheme }) => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
+  console.log(user);
 
   return (
     <Menu>
@@ -42,8 +48,15 @@ const Navbar = ({ toggleTheme }) => {
           </li>
         )}
         <li>
-          <StyledButtonChangeTheme onClick={toggleTheme}>テーマ切替</StyledButtonChangeTheme>
+          <StyledButtonChangeTheme onClick={toggleTheme}>
+            テーマ切替
+          </StyledButtonChangeTheme>
         </li>
+        {isAuthenticated && (
+          <li>
+            <ImageContainer src={user.picture} alt={user.name} />
+          </li>
+        )}
       </ul>
     </Menu>
   );
