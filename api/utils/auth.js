@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const jwks = require('jwks-rsa');
+const { promisify } = require('util');
 const jwksClient = jwks({
   jwksUri: `https://${process.env.VITE_AUTH0_DOMAIN}/.well-known/jwks.json`,
   audience: process.env.VITE_AUTH0_AUDIENCE,
 });
-const { promisify } = require('util');
 
 const getAccessTokenFromHeaders = (headers) => {
   const rawAuthorization = headers.authorization;
