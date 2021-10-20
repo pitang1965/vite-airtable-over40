@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StyledLink } from '../styled/StyledLink';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useAtom } from 'jotai'
+import { roleAtom } from '../atoms/auth';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { StyledButtonChangeTheme } from '../styled/StyledButton';
@@ -30,7 +32,7 @@ const ImageContainer = styled.img`
 const Navbar = ({ toggleTheme }) => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
   const [userName, setUserName] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useAtom(roleAtom);
   useEffect(async () => {
     if (isAuthenticated) {
       const token = await getAccessTokenSilently();
