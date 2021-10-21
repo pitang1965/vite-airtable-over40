@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 import MemberEditForm from './MemberEditForm';
 import { StyledButton } from '../styled/StyledButton';
+import { useAtom } from 'jotai'
+import { roleAtom } from '../atoms/auth';
 
 const StyledMember = styled.article`
   display: flex;
@@ -69,6 +71,16 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
     setFields((prev) => ({ ...prev, ...values }));
   };
 
+  const [role, setRole] = useAtom(roleAtom);
+  const [canEdit, setCanEdit] = useState(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      setCanEdit(role === '管理者' || role === '一般メンバ');
+    } else {
+      setCanEdit(false);
+    }
+  }, [role]);
+
   return (
     <>
       <StyledMember>
@@ -86,7 +98,7 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
           <StyledTitle>{fields.Title}</StyledTitle>
           <StyledBio>{fields.Bio}</StyledBio>
         </StyledInfo>
-        {isAuthenticated && (
+        {canEdit && (
           <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
         )}
       </StyledMember>
