@@ -25,7 +25,7 @@ export const StyledInfo = styled.div`
   width: 90%;
 `;
 
-export const StyledName = styled.a`
+export const StyledName = styled.p`
   font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -33,12 +33,12 @@ export const StyledName = styled.a`
 
 export const ImageContainer = styled.img`
   border-radius: 50%;
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
 `;
 
 export const StyledTitle = styled.p`
-  font-size:1rem;
+  font-size: 1rem;
   margin-top: 0.2em;
   margin-bottom: 0.1em;
 `;
@@ -54,4 +54,9 @@ export const StyledBio = styled.div`
   padding: 10px;
   height: 80px;
   width: 100%;
+`;
+
+export const StyledSnsIcons = styled.div`
+  display: flex;
+  margin-top: 5px;
 `;

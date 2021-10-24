@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StyledLink } from '../styled/StyledLink';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useAtom } from 'jotai'
+import { useAtom } from 'jotai';
 import { roleAtom } from '../atoms/auth';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
@@ -12,7 +12,7 @@ import {
   isAdmin,
   isOrdinaryMember,
   isNoRole,
-} from '../util/permission';
+} from '../utils/permission';
 
 const Menu = styled.nav`
   & ul {

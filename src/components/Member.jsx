@@ -8,10 +8,16 @@ import {
   ImageContainer,
   StyledTitle,
   StyledBio,
+  StyledSnsIcons,
 } from '../styled/StyledMember';
 import { StyledButton } from '../styled/StyledButton';
 import { useAtom } from 'jotai';
 import { roleAtom } from '../atoms/auth';
+import Homepage from './SnsIcons/Homepage';
+import Twitter from './SnsIcons/Twitter';
+import Github from './SnsIcons/Github';
+import Instagram from './SnsIcons/Instagram';
+import Youtube from './SnsIcons/Youtube';
 
 const Member = ({ id, fields: prevFields, updateMember }) => {
   const [visible, setVisible] = useState(false);
@@ -33,6 +39,24 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
     }
   }, [role]);
 
+  const homepageUrl = fields?.['Homepage URL'];
+  const twitterUserName = fields?.['Twitter username'];
+  const githubUserName = fields?.['GitHub username'];
+  const instagramUserName = fields?.['Instagram username'];
+  const youtubeUrl = fields?.['YouTube URL'];
+
+  const homepagePart = homepageUrl ? <Homepage url={homepageUrl} /> : null;
+  const twitterPart = twitterUserName ? (
+    <Twitter userName={twitterUserName} />
+  ) : null;
+  const githubPart = githubUserName ? (
+    <Github userName={githubUserName} />
+  ) : null;
+  const instagramPart = instagramUserName ? (
+    <Instagram userName={instagramUserName} />
+  ) : null;
+  const youtubePart = youtubeUrl ? <Youtube url={youtubeUrl} /> : null;
+
   return (
     <>
       <StyledMember>
@@ -40,15 +64,16 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
           src={fields?.Photo && fields.Photo[0].url}
         ></ImageContainer>
         <StyledInfo>
-          <StyledName
-            href={fields?.['Homepage URL']}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            {fields.Name}
-          </StyledName>
+          <StyledName>{fields.Name}</StyledName>
           <StyledTitle>{fields.Title}</StyledTitle>
           <StyledBio>{fields.Bio}</StyledBio>
+          <StyledSnsIcons>
+            {homepagePart}
+            {twitterPart}
+            {githubPart}
+            {instagramPart}
+            {youtubePart}
+          </StyledSnsIcons>
         </StyledInfo>
         {canEdit && (
           <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
