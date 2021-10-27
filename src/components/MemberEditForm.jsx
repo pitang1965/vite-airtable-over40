@@ -20,7 +20,8 @@ const StyledModal = styled(Modal)`
     background-color: var(--card-bg-color);
     transition-duration: 0ms;
   }
-  .ant-btn:hover, .ant-btn:hover span {
+  .ant-btn:hover,
+  .ant-btn:hover span {
     color: var(--card-bg-color);
     background-color: var(--main-fg-color);
   }
@@ -31,7 +32,8 @@ const StyledModal = styled(Modal)`
     color: var(--button-fg-color);
     background-color: var(--button-bg-color);
   }
-  .ant-btn-primary:hover, .ant-btn-primary:hover span {
+  .ant-btn-primary:hover,
+  .ant-btn-primary:hover span {
     color: var(--button-fg-hover-color);
     background-color: var(--button-bg-hover-color);
   }
@@ -72,6 +74,11 @@ const MemberEditForm = ({
           Title: fields.Title,
           Bio: fields.Bio,
           'Email address': fields['Email address'],
+          'Homepage URL': fields['Homepage URL'],
+          'Twitter username': fields['Twitter username'],
+          'GitHub username': fields['GitHub username'],
+          'Instagram username': fields['Instagram username'],
+          'YouTube URL': fields['YouTube URL'],
         }}
       >
         <Form.Item
@@ -86,6 +93,7 @@ const MemberEditForm = ({
         >
           <Input />
         </Form.Item>
+
         <Form.Item
           name='Title'
           label='タイトル'
@@ -96,8 +104,9 @@ const MemberEditForm = ({
             },
           ]}
         >
-          <Input />
+          <Input placeholder='Web制作勉強中' />
         </Form.Item>
+
         <Form.Item name='Bio' label='プロフィール'>
           <Input.TextArea autoSize='true' />
         </Form.Item>
@@ -112,7 +121,74 @@ const MemberEditForm = ({
             },
           ]}
         >
-          <Input placeholder='abc@pitang1965.com' />
+          <Input placeholder='pitang@example.com' />
+        </Form.Item>
+
+        <Form.Item
+          name='Homepage URL'
+          label='ホームページURL'
+          rules={[
+            {
+              required: false,
+              type: 'url',
+              message: 'ホームページURとして適切なものを入力してください。',
+            },
+          ]}
+        >
+          <Input placeholder='https://example.com' />
+        </Form.Item>
+
+        <Form.Item
+          name='Twitter username'
+          label='Twitterユーザーネーム'
+          rules={[
+            {
+              required: true,
+              message: 'Twitterユーザーネームを入力してください。',
+            },
+          ]}
+        >
+          <Input placeholder='pitang1965' />
+        </Form.Item>
+
+        <Form.Item
+          name='GitHub username'
+          label='GitHubユーザーネーム'
+          rules={[
+            {
+              required: false,
+              message: 'GitHubユーザーネームを入力してください。',
+            },
+          ]}
+        >
+          <Input placeholder='pitang1965' />
+        </Form.Item>
+
+        <Form.Item
+          name='Instagram username'
+          label='Instagramユーザーネーム'
+          rules={[
+            {
+              required: false,
+              message: 'Instagramユーザーネームを入力してください。',
+            },
+          ]}
+        >
+          <Input placeholder='pitang1965' />
+        </Form.Item>
+
+        <Form.Item
+          name='YouTube URL'
+          label='YouTube URL'
+          rules={[
+            {
+              required: false,
+              type: 'url',
+              message: 'YouTube URLとして適切なものを入力してください。',
+            },
+          ]}
+        >
+          <Input placeholder='https://www.youtube.com/channel/xxxxx' />
         </Form.Item>
       </Form>
     </StyledModal>
