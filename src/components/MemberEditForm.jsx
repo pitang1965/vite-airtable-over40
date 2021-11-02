@@ -107,7 +107,16 @@ const MemberEditForm = ({
           <Input placeholder='Web制作勉強中' />
         </Form.Item>
 
-        <Form.Item name='Bio' label='プロフィール'>
+        <Form.Item
+          name='Bio'
+          label='プロフィール'
+          rules={[
+            {
+              required: true,
+              message: 'プロフィールを入力してください。',
+            },
+          ]}
+        >
           <Input.TextArea autoSize='true' />
         </Form.Item>
         <Form.Item
