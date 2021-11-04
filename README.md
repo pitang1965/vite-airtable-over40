@@ -20,8 +20,8 @@
 * メンバー情報などを格納しています。
 
 ## 利用可能なスクリプト
-### `npm build`
+### `npm run build`
 本番環境のアプリを dist フォルダーにビルドします。
 
-### `npm netlify`
+### `npm run netlify`
 アプリを開発環境でNetlify Functionとともに実行します。
