@@ -4,6 +4,7 @@ const {
   validateAccessToken,
 } = require('./utils/auth');
 const formattedReturn = require('./utils/formattedReturn');
+const { sendSlackMessage } = require('./utils/sendSlackMessage');
 
 module.exports = async (event) => {
   if (event.httpMethod !== 'PATCH') {
@@ -18,6 +19,9 @@ module.exports = async (event) => {
 
   try {
     const updatedMember = await table.update([{ id, fields }]);
+    sendSlackMessage(
+      `${fields.Name}のメンバーデータが更新されました。https://over40-web-club-memeber.netlify.app/`
+    );
     return formattedReturn(200, updatedMember);
   } catch (err) {
     console.error(err);

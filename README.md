@@ -3,19 +3,22 @@
 * Over 40 Web Clubのメンバー専用アプリです。
 
 ## 使用しているサービス及びライブラリ等
-### [Auth0](https://auth0.com/)
-* 本アプリは、Twitterログインして使います。
-* 次のRoleをAuth0のダッシュボードで設定する運用としています。
-  * admin：なんでもできる。
-  * ordinary-member：メンバーの削除や追加は制限されます。
-###  [@auth0/auth0-react](https://www.npmjs.com/package/@auth0/auth0-react)
-* React APA用のAuth0 SDK
 ### [Airtable](https://airtable.com/)
 * スプレッドシートの親しみやすさでリレーショナルデータベースを作成及び共有できるサービス。
 * 本アプリではメンバー情報を格納し、apiを介して取得や更新をおこなっています。
 ### [antd](https://www.npmjs.com/package/antd) ([Ant Design](https://ant.design/))
 * ReactのUIライブラリ
 * 本アプリでは、[Modal](https://www.npmjs.com/package/antd)を使用しています。
+### [Auth0](https://auth0.com/)
+* 本アプリは、Twitterログインして使います。
+* 次のRoleをAuth0のダッシュボードで設定する運用としています。
+  * admin：なんでもできる。
+  * ordinary-member：メンバーの削除や追加は制限されます。
+### [Axios](https://axios-http.com/)
+* プロミスベースのHTTPクライアントでブラウザとNode.jsで使用できます。
+* 本アプリではNetlify Functions (Node.js)で使用しています。
+###  [@auth0/auth0-react](https://www.npmjs.com/package/@auth0/auth0-react)
+* React APA用のAuth0 SDK
 ### [jotai](https://jotai.pmnd.rs/)
 * Reactの状態管理ライブラリ
 * 本アプリでは、ログインしたユーザーのロール(Auth0で設定）に関する情報をアプリ内でグローバルにアクセスするために使用しています。
@@ -55,6 +58,10 @@
 * データ取得のための React Hooks ライブラリ.
 * SWR は、まずキャッシュからデータを返し（stale）、次にフェッチリクエストを送り（revalidate）、最後に最新のデータを持ってくるという戦略(stale-while-revalidate)から来ています。
 * 本アプリでは、Airtableからメンバ情報を継続的かつ自動的に受け取るために使用しています。
+### Twitter
+* 本アプリでは、Auth0と連携し、Twitterログインを用いています。
+* [Auth0での設定](https://marketplace.auth0.com/integrations/twitter-social-connection)
+* [Twitter Devloper Portal](https://developer.twitter.com/en/portal/dashboard)。
 ### [Vite](https://ja.vitejs.dev/)
 * 次世代フロントエンドツール。
 * 「びーと」と読みます。
