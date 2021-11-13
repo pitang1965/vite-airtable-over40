@@ -4,11 +4,12 @@ Airtable.configure({
 });
 
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
-const table = base(process.env.AIRTABLE_TABLE_NAME);
+const members_t = base(process.env.AIRTABLE_MEMBERS_T);
+const workshops_t = base(process.env.AIRTABLE_WORKSHOPS_T);
 
 const getMembers = async () => {
   const formattedMembers = [];
-  await table
+  await members_t
     .select({
       sort: [{ field: 'Order', direction: 'asc' }],
       filterByFormula: `Name != ''`,
@@ -23,4 +24,21 @@ const getMembers = async () => {
   return formattedMembers;
 };
 
-module.exports = { table, getMembers };
+const getWorkshops = async () => {
+  const formattedMembers = [];
+  await workshops_t
+    .select({
+      sort: [{ field: 'Date', direction: 'asc' }],
+      filterByFormula: `Name != ''`,
+    })
+    .eachPage((workshops, fetchNextPage) => {
+      workshops.forEach((workshop) => {
+        formattedMembers.push({ id: workshop.id, fields: workshop.fields });
+      });
+      fetchNextPage();
+      console.log('next');
+    });
+  return formattedMembers;
+};
+
+module.exports = { members_t, getMembers, getWorkshops };

@@ -6,9 +6,9 @@ import { StyledApp } from './styled/StyledApp';
 import { GlobalStyle } from './styled/Global';
 import { lightTheme, darkTheme } from './styled/Themes';
 import useTheme from './hooks/useTheme';
-import Home from './pages/Home';
-import Workshop from './pages/Workshop';
-import About from './pages/About';
+import HomePage from './pages/HomePage';
+import WorkshopPage from './pages/WorkshopPage';
+import AboutPage from './pages/AboutPage';
 import Navber from './components/Navbar';
 import ProtectedRoute from './components/route/ProtectedRoute';
 import toast, { Toaster } from 'react-hot-toast';
@@ -36,9 +36,9 @@ function App() {
           <Toaster />
           <Navber toggleTheme={toggleTheme} />
           <Switch>
-            <Route path='/about' component={About} />
-            <ProtectedRoute path='/workshop' component={Workshop} />
-            <Route path='/' component={Home} />
+            <Route path='/about' component={AboutPage} />
+            <ProtectedRoute path='/workshop' component={WorkshopPage} />
+            <Route path='/' component={HomePage} />
           </Switch>
           <FooterMenu />
         </StyledApp>

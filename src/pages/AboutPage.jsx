@@ -12,7 +12,7 @@ const StyledAbout = styled.div`
   gap: 2rem;
 `;
 
-const About = () => {
+const AboutPage = () => {
   return (
     <StyledAbout>
       <StyledPageTitle>このWebサイトについて</StyledPageTitle>
@@ -28,4 +28,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutPage;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledPageTitle } from '../styled/StyledPageTitle';
+import Workshops from '../components/Workshops';
 
 const StyledWorkshop = styled.div`
   height: 80vh;
@@ -12,16 +13,16 @@ const StyledWorkshop = styled.div`
   gap: 2rem;
 `;
 
-const Workshop = () => {
+const WorkshopPage = () => {
   return (
     <StyledWorkshop>
       <StyledPageTitle>勉強会について</StyledPageTitle>
       <main>
         <p>これまで開催した勉強会資料は以下の通り。</p>
-        <p>工事中・・・</p>
+        <Workshops/>
       </main>
     </StyledWorkshop>
   );
 };
 
-export default Workshop;
+export default WorkshopPage;

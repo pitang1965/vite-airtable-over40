@@ -1,4 +1,4 @@
-const { table } = require('./utils/airtable');
+const { members_t } = require('./utils/airtable');
 const {
   getAccessTokenFromHeaders,
   validateAccessToken,
@@ -18,7 +18,7 @@ module.exports = async (event) => {
   }
 
   try {
-    const updatedMember = await table.update([{ id, fields }]);
+    const updatedMember = await members_t.update([{ id, fields }]);
     sendSlackMessage(
       `${fields.Name}のメンバーデータが更新されました。https://over40-web-club-memeber.netlify.app/`
     );
