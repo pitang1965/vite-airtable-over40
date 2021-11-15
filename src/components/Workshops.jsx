@@ -5,16 +5,18 @@ import { Loader } from '../styled/Loader';
 import { StyledError } from '../styled/StyledError';
 
 const StyledWorkshops = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: space-between;
-  justify-content: center;
-  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
   max-width: 1200px;
 `;
 
 const StyledWorkshop = styled.div`
   font-size: 0.8rem;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 10px 10px 22px -13px rgba(0, 0, 0, 0.8);
 `;
 
 const workshopsEndpoint = './.netlify/functions/workshops';
