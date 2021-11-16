@@ -12,14 +12,35 @@ const StyledWorkshops = styled.section`
 `;
 
 const StyledWorkshop = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: 0.8rem;
   padding: 5px;
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 10px 10px 22px -13px rgba(0, 0, 0, 0.8);
 `;
+const DivWrapper = styled.div`
+  margin-top: 3px;
+  padding: 3px;
+  font-size: 0.8rem;
+`;
+const H3 = styled.div`
+  padding: 3px;
+  font-size: 1rem;
+  color: rgb(132, 134, 6);
+`;
+const SpanWrapper = styled.span`
+  display: inline-block;
+  padding: 3px 6px;
+  margin-right:2px;
+  background-color: #c9cc10;
+  color: #fff;
+  border-radius: 10px;
+`;
 
-const workshopsEndpoint = './.netlify/functions/workshops';
+const workshopsEndpoint = "./.netlify/functions/workshops";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -46,7 +67,19 @@ const Workshops = () => {
         <StyledWorkshops>
           {workshops.map((workshop) => (
             <StyledWorkshop key={workshop.id}>
-              {workshop.fields.Name}
+              <H3>{workshop.fields.Name}</H3>
+              <DivWrapper>
+                <div>開催日：{workshop.fields.Date}</div>
+                <div>{workshop.fields.Notes}</div>
+                <SpanWrapper>{workshop.fields.Tag[0]}
+                </SpanWrapper>
+                <SpanWrapper>
+                  {!workshop.fields.Tag[1] ? null : workshop.fields.Tag[1]}
+                </SpanWrapper>
+                <SpanWrapper>
+                  {!workshop.fields.Tag[2] ? null : workshop.fields.Tag[2]}
+                </SpanWrapper>
+              </DivWrapper>
             </StyledWorkshop>
           ))}
         </StyledWorkshops>
