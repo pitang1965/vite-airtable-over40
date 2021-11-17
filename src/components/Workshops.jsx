@@ -40,14 +40,6 @@ const StyledWorkshopTitle = styled.h3`
   font-size: 1rem;
   color: var(--main-fg-color);
 `;
-const StyledWorkshopSpan = styled.span`
-  display: inline-block;
-  padding: 3px 6px;
-  margin-right: 2px;
-  background-color: #c9cc10;
-  color: #fff;
-  border-radius: 10px;
-`;
 
 const workshopsEndpoint = "./.netlify/functions/workshops";
 
@@ -80,15 +72,6 @@ const Workshops = () => {
               <StyledWorkshopDetail>
                 <div>開催日：{workshop.fields.Date}</div>
                 <div>{workshop.fields.Notes}</div>
-                <StyledWorkshopSpan>
-                  {workshop.fields.Tag[0]}
-                </StyledWorkshopSpan>
-                <StyledWorkshopSpan>
-                  {!workshop.fields.Tag[1] ? null : workshop.fields.Tag[1]}
-                </StyledWorkshopSpan>
-                <StyledWorkshopSpan>
-                  {!workshop.fields.Tag[2] ? null : workshop.fields.Tag[2]}
-                </StyledWorkshopSpan>
               </StyledWorkshopDetail>
             </StyledWorkshop>
           ))}
