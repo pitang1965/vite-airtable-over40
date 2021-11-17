@@ -7,8 +7,16 @@ import { StyledError } from '../styled/StyledError';
 const StyledWorkshops = styled.section`
   display: grid;
   gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   max-width: 1200px;
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+      max-width: 350px;
+    }
+  }
 `;
 
 const StyledWorkshop = styled.div`
