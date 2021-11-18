@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import styled from 'styled-components';
 import { Loader } from '../styled/Loader';
 import { StyledError } from '../styled/StyledError';
+import Workshop from './Workshop';
 
 const StyledWorkshops = styled.section`
   display: grid;
@@ -19,29 +20,7 @@ const StyledWorkshops = styled.section`
   }
 `;
 
-const StyledWorkshop = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  padding: 5px;
-  background-color: var(--card-bg-color);
-  border-radius: 3px;
-  box-shadow: 10px 10px 22px -13px rgba(0, 0, 0, 0.8);
-`;
-const StyledWorkshopDetail = styled.div`
-  margin-top: 3px;
-  padding: 3px;
-  font-size: 0.8rem;
-  color: var(--main-fg-color);
-`;
-const StyledWorkshopTitle = styled.h3`
-  padding: 3px;
-  font-size: 1rem;
-  color: var(--main-fg-color);
-`;
-
-const workshopsEndpoint = "./.netlify/functions/workshops";
+const workshopsEndpoint = './.netlify/functions/workshops';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -67,13 +46,7 @@ const Workshops = () => {
       {workshops && (
         <StyledWorkshops>
           {workshops.map((workshop) => (
-            <StyledWorkshop key={workshop.id}>
-              <StyledWorkshopTitle>{workshop.fields.Name}</StyledWorkshopTitle>
-              <StyledWorkshopDetail>
-                <div>開催日：{workshop.fields.Date}</div>
-                <div>{workshop.fields.Notes}</div>
-              </StyledWorkshopDetail>
-            </StyledWorkshop>
+            <Workshop key={workshop.id} fields={workshop.fields} />
           ))}
         </StyledWorkshops>
       )}
