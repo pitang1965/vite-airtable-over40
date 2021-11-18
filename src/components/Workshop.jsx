@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Tags from './Tags';
 
 const StyledWorkshop = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ const Workshop = ({ fields }) => {
         <div>開催日：{fields.Date}</div>
         <div>{fields.Notes}</div>
       </StyledWorkshopDetail>
+      <Tags tags={fields.Tag} />
     </StyledWorkshop>
   );
 };
