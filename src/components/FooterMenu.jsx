@@ -1,29 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
+import BuyMeCoffee from './BuyMeCoffee';
 
 const StyledLink = styled.a`
   align-items: center;
 `;
 
+const StyledFooter = styled.footer`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+`;
+
 const FooterMenu = () => {
   return (
-    <footer>
+    <StyledFooter>
       <StyledLink
-        href='https://reactjs.org'
+        href='https://over40webclub.netlify.app/'
         target='_blank'
         rel='noopener noreferrer'
       >
-        Learn React
+        Landing page
       </StyledLink>
       {' | '}
       <StyledLink
-        href='https://vitejs.dev/guide/features.html'
+        href='https://airtable.com/appJjvnYw54DbKrcT/tblWk9NU3UwUFNkJF/viwjqwxWUycbj6j1A?blocks=hide'
         target='_blank'
         rel='noopener noreferrer'
       >
-        Vite Docs
+        Airtable（管理者のみ）
       </StyledLink>
-    </footer>
+      <BuyMeCoffee />
+    </StyledFooter>
   );
 };
 
