@@ -1,25 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { StyledLink } from '../styled/StyledLink';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { StyledButtonChangeTheme } from '../styled/StyledButton';
+import { Menu, ImageContainer } from '../styled/StyledNavbar';
 import useAuth from '../hooks/useAuth';
-
-const Menu = styled.nav`
-  & ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    list-style: none;
-    align-items: center;
-  }
-`;
-
-const ImageContainer = styled.img`
-  border-radius: 50%;
-  padding: 5px;
-`;
 
 const Navbar = ({ toggleTheme }) => {
   const { isMember, userName, userPicture, role } = useAuth();
