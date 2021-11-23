@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { StyledLink } from '../styled/StyledLink';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useAtom } from 'jotai';
-import { roleAtom } from '../atoms/auth';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { StyledButtonChangeTheme } from '../styled/StyledButton';
-import {
-  getPermissionsFromToken,
-  isAdmin,
-  isOrdinaryMember,
-  isNoRole,
-} from '../utils/permission';
+import useAuth from '../hooks/useAuth';
 
 const Menu = styled.nav`
   & ul {
@@ -30,28 +22,7 @@ const ImageContainer = styled.img`
 `;
 
 const Navbar = ({ toggleTheme }) => {
-  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
-  const [userName, setUserName] = useState('');
-  const [role, setRole] = useAtom(roleAtom);
-  useEffect(async () => {
-    if (isAuthenticated) {
-      const token = await getAccessTokenSilently();
-      console.table(getPermissionsFromToken(token));
-      setUserName(user?.name);
-      if (isAdmin(token)) {
-        setRole('管理者');
-      } else if (isOrdinaryMember(token)) {
-        setRole('一般メンバ');
-      } else if (isNoRole(token)) {
-        setRole('メンバ登録未完了');
-      } else {
-        setRole('不明なロール');
-      }
-    } else {
-      setUserName('未ログイン');
-      setRole('');
-    }
-  }, [user]);
+  const { isMember, userName, userPicture, role } = useAuth();
 
   return (
     <Menu>
@@ -65,12 +36,12 @@ const Navbar = ({ toggleTheme }) => {
         <li>
           <StyledLink to='/about'>About</StyledLink>
         </li>
-        {!isAuthenticated && (
+        {!isMember && (
           <li>
             <LoginButton />
           </li>
         )}
-        {isAuthenticated && (
+        {isMember && (
           <li>
             <LogoutButton />
           </li>
@@ -80,9 +51,9 @@ const Navbar = ({ toggleTheme }) => {
             テーマ切替
           </StyledButtonChangeTheme>
         </li>
-        {isAuthenticated && (
+        {isMember && (
           <li>
-            <ImageContainer src={user.picture} alt={user.name} />
+            <ImageContainer src={userPicture} alt={userName} />
           </li>
         )}
         <li>{userName}</li>
