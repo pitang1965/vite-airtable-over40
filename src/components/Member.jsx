@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import React, { useState } from 'react';
 import MemberEditForm from './MemberEditForm';
 import {
   StyledMember,
@@ -11,8 +10,7 @@ import {
   StyledSnsIcons,
 } from '../styled/StyledMember';
 import { StyledButton } from '../styled/StyledButton';
-import { useAtom } from 'jotai';
-import { roleAtom } from '../atoms/auth';
+import useAuth from '../hooks/useAuth';
 import Homepage from './SnsIcons/Homepage';
 import Twitter from './SnsIcons/Twitter';
 import Github from './SnsIcons/Github';
@@ -22,22 +20,12 @@ import Youtube from './SnsIcons/Youtube';
 const Member = ({ id, fields: prevFields, updateMember }) => {
   const [visible, setVisible] = useState(false);
   const [fields, setFields] = useState(prevFields);
-  const { isAuthenticated } = useAuth0();
+  const{ isMember } = useAuth();
 
   const onCreate = (values) => {
     setVisible(false);
     setFields((prev) => ({ ...prev, ...values }));
   };
-
-  const [role, setRole] = useAtom(roleAtom);
-  const [canEdit, setCanEdit] = useState(false);
-  useEffect(() => {
-    if (isAuthenticated) {
-      setCanEdit(role === '管理者' || role === '一般メンバ');
-    } else {
-      setCanEdit(false);
-    }
-  }, [role]);
 
   const homepageUrl = fields?.['Homepage URL'];
   const twitterUserName = fields?.['Twitter username'];
@@ -75,7 +63,7 @@ const Member = ({ id, fields: prevFields, updateMember }) => {
             {youtubePart}
           </StyledSnsIcons>
         </StyledInfo>
-        {canEdit && (
+        {isMember && (
           <StyledButton onClick={() => setVisible(true)}>編集</StyledButton>
         )}
       </StyledMember>

@@ -8,7 +8,7 @@ const RequireAuth = ({ children }) => {
     children
   ) : (
     <div>
-      <p>認証されないとこのページは見ることができません。</p>
+      <p>Twitter認証及び管理者によるパーミッションの付与がされていないとこのページは見ることができません。</p>
       <LoginButton />
     </div>
   );
