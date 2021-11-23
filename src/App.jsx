@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FooterMenu from './components/FooterMenu';
 import { ThemeProvider } from 'styled-components';
 import { StyledApp } from './styled/StyledApp';
@@ -10,7 +10,7 @@ import HomePage from './pages/HomePage';
 import WorkshopPage from './pages/WorkshopPage';
 import AboutPage from './pages/AboutPage';
 import Navber from './components/Navbar';
-import ProtectedRoute from './components/route/ProtectedRoute';
+import RequireAuth from './components/route/RequireAuth';
 import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -35,11 +35,11 @@ function App() {
         <StyledApp>
           <Toaster />
           <Navber toggleTheme={toggleTheme} />
-          <Switch>
-            <Route path='/about' component={AboutPage} />
-            <ProtectedRoute path='/workshop' component={WorkshopPage} />
-            <Route path='/' component={HomePage} />
-          </Switch>
+          <Routes>
+            <Route path='/about' element={<AboutPage/>} />
+            <Route path='/workshop' element={<RequireAuth><WorkshopPage /></RequireAuth>} />
+            <Route path='/' element={<HomePage/>} />
+          </Routes>
           <FooterMenu />
         </StyledApp>
       </ThemeProvider>
