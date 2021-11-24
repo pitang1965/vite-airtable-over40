@@ -7,7 +7,7 @@ import { Menu, ImageContainer } from '../styled/StyledNavbar';
 import useAuth from '../hooks/useAuth';
 
 const Navbar = ({ toggleTheme }) => {
-  const { isMember, userName, userPicture, role } = useAuth();
+  const { isAuthenticated, userName, userPicture, role } = useAuth();
 
   return (
     <Menu>
@@ -21,12 +21,12 @@ const Navbar = ({ toggleTheme }) => {
         <li>
           <StyledLink to='/about'>About</StyledLink>
         </li>
-        {!isMember && (
+        {!isAuthenticated && (
           <li>
             <LoginButton />
           </li>
         )}
-        {isMember && (
+        {isAuthenticated && (
           <li>
             <LogoutButton />
           </li>
@@ -36,7 +36,7 @@ const Navbar = ({ toggleTheme }) => {
             テーマ切替
           </StyledButtonChangeTheme>
         </li>
-        {isMember && (
+        {isAuthenticated && (
           <li>
             <ImageContainer src={userPicture} alt={userName} />
           </li>

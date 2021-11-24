@@ -5,14 +5,16 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { isAdmin, isOrdinaryMember, isNoRole } from '../utils/permission';
 
 const useAuth = () => {
-  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated:isAuth0Authenticated, user, getAccessTokenSilently } = useAuth0();
   const [userName, setUserName] = useState('');
   const [userPicture, setUserPicture] = useState(null);
   const [role, setRole] = useAtom(roleAtom);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMember, setIsMember] = useState(false);
 
   useEffect(async () => {
-    if (isAuthenticated) {
+    if (isAuth0Authenticated) {
+      setIsAuthenticated(true);
       const token = await getAccessTokenSilently();
       setUserName(user?.name);
       setUserPicture(user?.picture);
@@ -28,13 +30,14 @@ const useAuth = () => {
 
       setIsMember(role === '管理者' || role === '一般メンバ');
     } else {
+      setIsAuthenticated(false);
       setUserName('未ログイン');
       setRole('');
       setIsMember(false);
     }
   }, [role, user]);
 
-  return { isMember, userName, userPicture, role };
+  return { isAuthenticated, isMember, userName, userPicture, role };
 };
 
 export default useAuth;
