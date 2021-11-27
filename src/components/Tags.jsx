@@ -18,6 +18,8 @@ const tagColor = (tag) => {
       return 'black';
     case 'JavaScript':
       return 'geekblue';
+    case 'Next.js':
+      return 'gold';
     case 'NPM':
       return 'red';
     case 'PHP':
