@@ -5,7 +5,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { isAdmin, isOrdinaryMember, isNoRole } from '../utils/permission';
 
 const useAuth = () => {
-  const { isAuthenticated:isAuth0Authenticated, user, getAccessTokenSilently } = useAuth0();
+  const {
+    getAccessTokenSilently,
+    isAuthenticated: isAuth0Authenticated,
+    loginWithRedirect,
+    logout,
+    user,
+  } = useAuth0();
   const [userName, setUserName] = useState('');
   const [userPicture, setUserPicture] = useState(null);
   const [role, setRole] = useAtom(roleAtom);
@@ -37,7 +43,16 @@ const useAuth = () => {
     }
   }, [role, user]);
 
-  return { isAuthenticated, isMember, userName, userPicture, role };
+  return {
+    getAccessTokenSilently,
+    isAuthenticated,
+    isMember,
+    loginWithRedirect,
+    logout,
+    role,
+    userName,
+    userPicture,
+  };
 };
 
 export default useAuth;
