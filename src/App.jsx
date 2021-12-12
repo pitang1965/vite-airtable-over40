@@ -18,9 +18,9 @@ function App() {
   const currentTheme = theme === 'light' ? lightTheme : darkTheme;
   useEffect(() => {
     const ua = window.navigator.userAgent.toLowerCase();
-    if (ua.indexOf('safari') > 1 && ua.indexOf('chrome') === -1) {
+    if (ua.indexOf('chrome') === -1) {
       toast.error(
-        'Safariはサポートされていません。ChromaかFirefoxを使用してください。',
+        'Chromeを使用してください。それ以外ではデータ更新でエラーになるかもしれません。',
         {
           icon: '😇',
         }
