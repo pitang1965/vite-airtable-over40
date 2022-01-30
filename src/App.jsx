@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import FooterMenu from './components/FooterMenu';
 import { ThemeProvider } from 'styled-components';
 import { StyledApp } from './styled/StyledApp';
