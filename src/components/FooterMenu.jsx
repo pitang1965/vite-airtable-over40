@@ -8,7 +8,9 @@ const StyledLink = styled.a`
 
 const StyledFooter = styled.footer`
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  padding: 0.5rem;
   align-items: center;
 `;
 
