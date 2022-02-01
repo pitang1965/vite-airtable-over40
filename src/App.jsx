@@ -9,6 +9,7 @@ import useTheme from './hooks/useTheme';
 import HomePage from './pages/HomePage';
 import WorkshopPage from './pages/WorkshopPage';
 import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Navber from './components/Navbar';
 import RequireAuth from './components/route/RequireAuth';
 import toast, { Toaster } from 'react-hot-toast';
@@ -38,7 +39,8 @@ function App() {
           <Routes>
             <Route path='/about' element={<AboutPage/>} />
             <Route path='/workshop' element={<RequireAuth><WorkshopPage /></RequireAuth>} />
-            <Route path='/' element={<HomePage/>} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='*' element={<NotFoundPage />} />
           </Routes>
           <FooterMenu />
         </StyledApp>
