@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FooterMenu from './components/FooterMenu';
 import { ThemeProvider } from 'styled-components';
 import { StyledApp } from './styled/StyledApp';
@@ -37,8 +37,15 @@ function App() {
           <Toaster />
           <Navber toggleTheme={toggleTheme} />
           <Routes>
-            <Route path='/about' element={<AboutPage/>} />
-            <Route path='/workshop' element={<RequireAuth><WorkshopPage /></RequireAuth>} />
+            <Route path='/about' element={<AboutPage />} />
+            <Route
+              path='/workshop'
+              element={
+                <RequireAuth>
+                  <WorkshopPage />
+                </RequireAuth>
+              }
+            />
             <Route path='/' element={<HomePage />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
