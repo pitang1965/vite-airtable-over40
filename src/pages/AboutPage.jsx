@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledPageTitle } from '../styled/StyledPageTitle';
-import { useNavigate } from 'react-router-dom';
 
 const StyledAbout = styled.main`
   width: 70vw;
@@ -14,9 +13,6 @@ const StyledDef = styled.dfn`
 `;
 
 const AboutPage = () => {
-  const navigate = useNavigate();
-  navigate('/about');
-
   return (
     <>
       <StyledPageTitle>本サイトについて</StyledPageTitle>
