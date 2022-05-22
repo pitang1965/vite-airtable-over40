@@ -49,6 +49,8 @@
 ### [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 * React用のルーティングライブラリ。
 * 本アプリではページの切り替えやページの保護（認証されていないと使えない）に使用しています。
+### [slack api](https://api.slack.com/)
+* メンバーデータが更新されたらSlackへ通知を送るのに使用しています。
 ### [styled-components](https://styled-components.com/)
 * CSS in JSライブラリ(JavaScriptでスタイルを記述）の一種。
 * タグ付きテンプレートリテラルの中に書くcssは従来のcssそのもの。
