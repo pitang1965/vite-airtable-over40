@@ -20,13 +20,13 @@ const membersEndopoint = '/.netlify/functions/members';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useGetMembers = () => {
-  const { data, error, mutate } = useSWR(membersEndopoint, fetcher);
+  const { data, error, isLoading, mutate } = useSWR(membersEndopoint, fetcher);
 
   console.log(data);
 
   return {
     members: data,
-    isLoading: !error && !data,
+    isLoading: isLoading,
     isError: error,
     mutate,
   };
@@ -54,7 +54,7 @@ const Members = () => {
 
       const res = await fetch(membersEndopoint, options);
       setUpdateErrorMessage(res.ok ? null : res.statusText);
-      // await res.json();
+      await res.json();
     } catch (err) {
       console.log(err);
       setUpdateErrorMessage(err.message);

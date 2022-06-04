@@ -18,29 +18,32 @@ const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMember, setIsMember] = useState(false);
 
-  useEffect(async () => {
-    if (isAuth0Authenticated) {
-      setIsAuthenticated(true);
-      const token = await getAccessTokenSilently();
-      setUserName(user?.name);
-      setUserPicture(user?.picture);
-      if (isAdmin(token)) {
-        setRole('管理者');
-      } else if (isOrdinaryMember(token)) {
-        setRole('一般メンバ');
-      } else if (isNoRole(token)) {
-        setRole('メンバ登録未完了');
-      } else {
-        setRole('不明なロール');
-      }
+  useEffect( () => {
+    async function authFunc() {
+      if (isAuth0Authenticated) {
+        setIsAuthenticated(true);
+        const token = await getAccessTokenSilently();
+        setUserName(user?.name);
+        setUserPicture(user?.picture);
+        if (isAdmin(token)) {
+          setRole('管理者');
+        } else if (isOrdinaryMember(token)) {
+          setRole('一般メンバ');
+        } else if (isNoRole(token)) {
+          setRole('メンバ登録未完了');
+        } else {
+          setRole('不明なロール');
+        }
 
-      setIsMember(role === '管理者' || role === '一般メンバ');
-    } else {
-      setIsAuthenticated(false);
-      setUserName('未ログイン');
-      setRole('');
-      setIsMember(false);
+        setIsMember(role === '管理者' || role === '一般メンバ');
+      } else {
+        setIsAuthenticated(false);
+        setUserName('未ログイン');
+        setRole('');
+        setIsMember(false);
+      }
     }
+    authFunc();
   }, [role, user]);
 
   return {
