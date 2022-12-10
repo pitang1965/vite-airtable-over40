@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import 'antd/dist/antd.css';
 import { Tag } from 'antd';
 
 const StyedTags = styled.div`

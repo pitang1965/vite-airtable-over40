@@ -1,5 +1,4 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Modal, Form, Input } from 'antd';
 import styled from 'styled-components';
 
