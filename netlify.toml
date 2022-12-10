@@ -7,3 +7,6 @@
   from = "/*"
   to = "/"
   status = 200
+
+[dev]
+  targetPort = 3000
