@@ -25,13 +25,13 @@ const workshopsEndpoint = './.netlify/functions/workshops';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const useGetWorkshops = () => {
-  const { data, error, mutate } = useSWR(workshopsEndpoint, fetcher);
+  const { data, error, isLoading, mutate } = useSWR(workshopsEndpoint, fetcher);
 
   console.log(data);
 
   return {
     workshops: data,
-    isLoading: !error && !data,
+    isLoading,
     isError: error,
     mutate,
   };

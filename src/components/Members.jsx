@@ -26,7 +26,7 @@ const useGetMembers = () => {
 
   return {
     members: data,
-    isLoading: isLoading,
+    isLoading,
     isError: error,
     mutate,
   };
